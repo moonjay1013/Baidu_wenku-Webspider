@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}文档练习页{% endblock %}
+
+{% block detail %}
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td>
+            <p class="tit">{{ analysis_result[0].get('title') }}</p>
+            <p class="p_content_dis">
+                {{ analysis_result[0].get('content').replace('<', '<  ').replace('\n', '<br/>').replace("\/", "/").replace('<  input', '<input')|safe }}
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div style="text-align: center">
+    <a href="javascript: $('#question').toggle();" style="font-size: 16px; color: green;">点击查看答案...</a>
+<div id="question" style="display: none;">
+    {% for item in analysis_result[1] %}
+    <p>
+        {{ item.get('sub_tit') }}&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ item.get('index') }}&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ item.get('answer') }}
+    </p>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

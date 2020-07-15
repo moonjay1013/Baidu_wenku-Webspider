@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}文档链接页{% endblock %}
+{% block detail %}
+{% block sum_count %}
+<p class="sum_count">共{{ count }}个链接</p>
+{% endblock %}
+<table>
+    <tr>
+        <td>
+            {{ pagination.info }}
+        </td>
+        <td>
+            <button id="btn">存储为Markdown文件</button>
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" >
+    <thead style="background-color: darkgray; color: white;">
+				<tr>
+                    <th style="text-align: center"><b>Index</b></th>
+					<th style="text-align: center"><b>Title</b></th>
+					<th style="text-align: center"><b>URL</b></th>
+				</tr>
+    </thead>
+    <tbody>
+    <!--skip((当前页码-1)*每页显示数).limit(每页显示数)  如：点击第二页--偏移值为10，查找11位以后的数据截取前10个-->
+    {% for item in collection.find({}).skip((page-1)*per_page).limit(per_page) %}
+    <tr>
+        <td>
+            {{ loop.index + pagination.skip }}
+        </td>
+        <td>
+            <p class="p_url">{{ item.get('title') }}</p>
+        </td>
+        <td>
+            <a href="{{ item.get('url') }}" target="_blank" title="{{ item.get('title') }}">
+                <cite>{{ item.get('url') }}</cite></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center">
+  {{ pagination.links }}
+</div>
+{% endblock %}

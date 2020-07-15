@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}文档内容页{% endblock %}
+
+{% block detail %}
+<table class="table table-bordered">
+    <tr>
+        <td>
+            {{ pagination.info }}
+        </td>
+        <td>
+            {% for item in collection.find({}).skip((page-1)).limit(1) %}
+            {% if item.get('type') == "ppt" %}
+            <button id="btn_ppt">存储为图片文件</button>
+            {% else %}
+            <button id="btn_other">存储为Markdown文件</button>
+            {% endif %}
+            {% if item.get('type') == "ppt" or item.get('type') == "pdf" %}
+            <a href="javascript:void(0)">图片文档无练习界面</a>
+            {% else %}
+            <a href="practice" style="color: red; font-size: 16px; margin-left: 50px">练习页跳转</a>
+            {% endif %}
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+<div style="text-align: center">
+  {{ pagination.links }}
+</div>
+<table class="table table-bordered">
+    <!--skip((当前页码-1)*每页显示数).limit(每页显示数)  如：点击第二页--偏移值为1，查找第2条以后数据截取前1个-->
+    {% for item in collection.find({}).skip((page-1)*per_page).limit(per_page) %}
+    <tr>
+        <td>
+            <div>
+                <p class="tit">{{ item.get('title') }}</p>
+                <p class="p_from_url">来自文档:
+                    <a href="{{ item.get('from_url') }}" target="_blank" title="{{ item.get('title') }}">
+                        <cite>{{ item.get('from_url') }}</cite>
+                    </a>
+                </p>
+                <p class="p_content_dis">
+                    {{ item.get('content').replace('<', '<  ').replace('\n', '<br/>').replace("\/", "/")|safe }}
+                </p>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center">
+  {{ pagination.links }}
+</div>
+{% endblock %}

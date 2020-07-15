@@ -1,0 +1,35 @@
+body{
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    background-color: #e2ecf5;
+}
+.p_url{
+    font-size: 15px; font-family:幼圆; line-height:1.8em; text-indent:2em;
+}
+.sum_count{
+    font-size: 20px; text-align:center;
+}
+cite{
+    color:blue;
+}
+.publicTime{
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    background: linear-gradient(to bottom,#f5f9f8,#eef2fb,#e2ecf5,#e2ecf5,#e0edf6);
+    padding-left: 20px;
+    color: #808589;
+}
+#time{
+    float: left;
+    padding-left: 20px;
+}
+.publicTime a{
+    float: right;
+    margin-left: 50px;
+    color: #626367;
+}

@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html"  %}
+{% block title %}Baidu Crawler{% endblock %}
+{% block styles %}
+<link href="{{url_for('static', filename='css/urls_display.css')}}" type="text/css" rel="stylesheet" />
+<link href="{{url_for('static', filename='css/content_display.css')}}" type="text/css" rel="stylesheet" />
+<link href="{{url_for('static', filename='css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block scripts %}
+<script src={{url_for('static', filename='js/time.js')}}></script>
+<script src={{url_for('static', filename='js/writeurls.js')}}></script>
+<script src={{url_for('static', filename='js/writedoc.js')}}></script>
+<script src={{url_for('static', filename='js/writeppt.js')}}></script>
+<script src={{url_for('static', filename='js/jquery-3.5.1.min.js')}}></script>
+{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <section class="publicTime">
+    <span id="time">2020年4月10日 10:10  星期五</span>
+        <a class="navbar-brand" href="/">Index Page</a>
+        <a href="javascript:void(0)">温馨提示：为了能正常浏览，请使用高版本浏览器！</a>
+    </section>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+  {% block detail %}{% endblock %}
+</div>
+{% endblock %}
